@@ -1,13 +1,12 @@
 /*
- * Copyright 2022 Joker Lei(Li Haoxian).
- *
- * I know this program sucks and it worths nothing.
- * But I still think I have the right to reserve all rights.
- * Because I spent time to write this program and it is the fruits of my labor.
+ * Key.java v1.0
+ * Copyright(c) 2022 Joker Lei(Li Haoxian)
+ * Released under the MIT License.
  */
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -22,23 +21,23 @@ import java.util.Scanner;
  * program if you have already downloaded JDK.
  * 
  * You just need to copy the "locked.txt" and "Key.txt" to desktop and change the 
- * suffix of "Key.txt" to ".java" ,then input "cd desktop" into DOS (for Windows) or 
- * Terminal/Shell (for Unix/Linux) to change directory to desktop and then input "java Key.java" 
+ * file extension of "Key.txt" to ".java" (locked.txtサフィックス変更必要なし),then input "cd desktop" into DOS (for Windows)
+ * or Terminal/Shell (for Mac/Linux) to change directory to desktop and then input "java Key.java" 
  * to run this program.(JDK11 or later is required).
  * 
  * If you can see the following contents in DOS,it means the program has been
- * successfully running:
+ * successfully running(The following example is copied from my computer):
  * 
  * +------------------------------------------------+
- * |C:\WINDOWS\system32\cmd.exe  	            |
- * |--------------------------------------------------|
- * |Microsoft Windows [版本 10.0.19043.1348]  |
- * |(c) Microsoft Corporation。保留所有权利。   |
- * |	       			            |
- * |C:\Users\27795>cd desktop	            |
- * |				            |
- * |C:\Users\27795\Desktop>java Key.java        |
- * |input account:			            |
+ *  |C:\WINDOWS\system32\cmd.exe  	            |
+ *  |-------------------------------------------------|
+ *  |Microsoft Windows [版本 10.0.19043.1348] |
+ *  |(c) Microsoft Corporation。保留所有权利。  |
+ *  |	       			            |
+ *  |C:\Users\27795>cd desktop	            |
+ *  |				            |
+ *  |C:\Users\27795\Desktop>java Key.java       |
+ *  |input account:			            |
  * +------------------------------------------------+
  * 
  * After that,input the "account" and "password" that stored in the map.The map is declared 
@@ -55,7 +54,7 @@ import java.util.Scanner;
  * Note:If the version of your JDK is NOT 11+(earlier than JDK11).You should input 
  * "javac Key.java" first,to create "class file".After the "Key.class" is generated,input 
  * "java Key" to run the program.（you can input "java -version" into DOS for windows
- * or Terminal/Shell for Unix/Linux to check you JDK version).
+ * or Terminal/Shell for Mac/Linux to check you JDK version).
  * Although you can run this program with JDK11-. I still suggest JDK11+ because
  * it might have some problems when you use "javac" to compile this file.Ofcourse,
  * you can ignore this suggestion if you use IDE to run this program.But if you do so,
@@ -69,22 +68,22 @@ import java.util.Scanner;
  * 
  * 这是一个可以解锁“locked.txt”文件的java程序，如果你已经安装了JDK，运行此程序将会非常简单。
  * 
- * 你只需要把“locked.txt”和“Key.txt”复制到桌面，然后把“Key.txt”的后缀改成“.java”，打开windows
- * 的DOS命令行或者Linux/Unix的Terminal/Shell,输入“cd desktop”进入桌面，输入“java Key.java”即可运行程序
+ * 你只需要把“locked.txt”和“Key.txt”复制到桌面，然后把“Key.txt”的文件拓展名改成“.java”，打开windows
+ * 的DOS命令行或者Mac/Linux的Terminal/Shell,输入“cd desktop”进入桌面，输入“java Key.java”即可运行程序
  * (需要JDK11或以上版本)。
  * 
- * 如果你在DOS中看到了以下内容，表示程序已经成功运行：
+ * 如果你在DOS中看到了以下内容，表示程序已经成功运行（以下例子复制自本人电脑）：
  * 
  * +------------------------------------------------+
- * |C:\WINDOWS\system32\cmd.exe  	            |
- * |--------------------------------------------------|
- * |Microsoft Windows [版本 10.0.19043.1348]  |
- * |(c) Microsoft Corporation。保留所有权利。   |
- * |	       			            |
- * |C:\Users\27795>cd desktop	            |
- * |				            |
- * |C:\Users\27795\Desktop>java Key.java        |
- * |input account:			            |
+ *  |C:\WINDOWS\system32\cmd.exe  	            |
+ *  |-------------------------------------------------|
+ *  |Microsoft Windows [版本 10.0.19043.1348] |
+ *  |(c) Microsoft Corporation。保留所有权利。  |
+ *  |	       			            |
+ *  |C:\Users\27795>cd desktop	            |
+ *  |				            |
+ *  |C:\Users\27795\Desktop>java Key.java       |
+ *  |input account:			            |
  * +------------------------------------------------+
  * 
  * 然后输入“账号”和“密码”，它们被保存在了本程序的末尾。你可以在本文件的最下面找到一个内部类，
@@ -98,16 +97,17 @@ import java.util.Scanner;
  * 注意：请确保“locked.txt”的字符集为UTF-8。
  * 注意：如果你的JDK版本低于11，需要先输入“javac Key.java”生成字节码文件，当“Key.class”生成后，
  * 再输入“java Key”运行程序。(你可以在Windows的DOS命令行里输入"java -version"查看你当前的JDK版本)
- * 虽然JDK11以下依然可以运行此程序，但是当你使用javac指令编译此文件时可能会有莫名的错误，
+ * 虽然JDK11以下依然可以运行此程序，但是当你使用javac指令编译此文件时可能会有莫名的错误（字符集问题），
  * 所以我还是推荐使用11+。当然，如果你是使用IDE去跑这个程序的话，你可以无视这个建议。但如果你这样做
- * 的话，你需要修改输出流和输入流的文件路径
+ * 的话，你需要修改输出流和输入流的文件路径，正常来说这个路径应该用properties文件导入而不应该写死在代码里。
+ * 但由于条件限制我也不想搞这么多附件发到辞职邮件中，将就着吧。
  * 
  * 完成“验证”后，乱码文件就会被解锁，还原成原来的文字，在你的桌面会生成一个新文件：
- * "unlocked.txt"文件。里面是解密后（被还原）的文字。
+ * "unlocked.txt"文件。里面是解密后的文字。
  * 恭喜你，你已经找到了我的“彩蛋”。
  * 
  * @author  Joker Lei (Li Haoxian)  ※Lei is the Cantonese Pinyin of "李"
- * @date 2022年2月10日 8:21
+ * @date 2022年1月12日 8:21
  */
 public class Key {
 	
@@ -115,23 +115,29 @@ public class Key {
 		
 		Key key = new Key();
 		/*
-		 * 根据verify方法返回的4种状态码进行4种不同的操作。仅在返回VERIFY_PASS时才会有实际的
-		 * 操作，其余3种状态码仅会在控制台输出一句话并退出程序。当然，由于这个程序是开源的，
+		 * 根据verify方法返回的3种状态码进行3种不同的操作。仅在返回VERIFY_PASS时才会有实际的
+		 * 操作，其余2种状态码仅会在控制台输出一句话并退出程序。当然，由于这个程序是开源的，
 		 * 你完全可以通过修改源码的方式跳过"验证"，让它直接执行解密方法。
 		 */
 		switch(key.verify()) {
 			case VERIFY_PASS://进行解密（或加密）
+			try {
 				key.lockOrUnlockFile();
 				System.out.println("file has been unlocked,check the new file: unlocked.txt");
+				
+			} catch (IOException e) {
+				//以下异常信息已被替换为新的FileNotFoundException实例
+				e.printStackTrace();
+
+			}finally{
 				break;
+			}								
 			case INPUT_EXIT://主动退出程序
 				System.out.println("Bye!");
 				break;
 			case VERIFY_WRONG://被动退出程序
 				System.out.println("10 times wrong input,auto shutdown");
 				break;
-			case VERIFY_ERROR://进入catch块时的返回值
-				System.out.println("did you change my code?");//基本不会出现这种情况，除非有人修改源码并改出了BUG
 		}
 	}
 	
@@ -139,10 +145,16 @@ public class Key {
 	 * the method to lock or unlock file
 	 * 
 	 * 用于加密或解密的方法
+	 * @throws IOException
 	 */
-	public void lockOrUnlockFile() {
+	public void lockOrUnlockFile() throws IOException{
 		InputStreamReader isr = null;
 		OutputStreamWriter osw = null;
+		/*
+		 * 这里不能用try-catch块处理异常，否则若找不到locked.txt文件，弹出FileNotFoundException后main方法中
+		 * 的“文件已解密”文字还是会输出。用throws往外抛出异常后在main方法中再进行处理。
+		 * 此处的catch仅用于抛出新的异常实例补充错误信息。
+		 */
 		try {	
 				//创建输入流，将加密文件从磁盘读取到内存中，以进行一些“不可描述”的操作，这个是相对路径
 				//如果你需要写绝对路径，可以参考再下面一行的绝对路径，这是在我电脑中的绝对路径。
@@ -158,19 +170,31 @@ public class Key {
 				char[] buf = new char[1024];//创建字符型数组，作为IO的容器			
 				int len;
 				/*
-				 * 反复读取内存中文件的内容，直至读到文件末尾，每次取出内容后，将每一个字符
-				 * 与65535进行异或运算，原文件就是通过与65535进行异或得到加密文件的。众所周知：
+				 * 反复读取内存中文件的内容，直至读到文件末尾，每次取出内容后，将其放入数组中并将数组中每
+				 * 一个字符与65535进行异或运算，原文件就是通过与65535进行异或得到加密文件的。众所周知：
 				 * a与b进行异或运算后，将结果c再次与b进行异或运算，可重新得到a。即：
-				 * a⊕b=c,c⊕b=a，b被称作“秘钥”，在这里，65535即为密钥
+				 * a⊕b=c,c⊕b=a，b被称作“秘钥”，在这里，65535即为秘钥
 				 */
 				while((len = isr.read(buf)) != -1){
 					for(int i = 0;i < len;i++) {
-						buf[i] ^= -1;//此处-1和65535是等价的，可将16位bit全部反转，达成加密（或解密）效果
+						buf[i] ^= -1;//此处-1和65535是等价的，可将16位bit全部反转
+						//buf[i] ^= 65535;
 					}
 					osw.write(buf, 0, len);//异或操作完成后，将字符数组从内存输出到硬盘，保存在名为"unlocked.txt"的文件中
 				}	
-		}catch (IOException e) {
-			e.printStackTrace();
+		}catch (IOException e){
+			//e.printStackTrace();
+			/*
+			 * 希望你在运行此程序时永远不会看到下面这句话。因为Windows命令提示符（DOS窗口）中默认字符集为ANSI，即中文系统为GBK，日文系统为JIS
+			 * 而本文件字符集为UTF-8（看记事本右下角）。所以如果你没有使用IDE，又不是在mac系统或linux系统运行，那么无论是中方的电脑还是日方的电脑，
+			 * 下面这句中文必定会在DOS窗口中输出一串乱码。（当然，我还没在类Unix系统下进行过测试）
+			 * 中文系统的解决方案很简单，将本文件改成ANSI字符集即可。（你问我为什么不用ANSI保存后再发出来？因为那样子的话发到日本人电脑后本文档中文会全部乱码，虽然他们也看不懂中文...）
+			 * 日文系统需要在运行此程序前先输入chcp 65001将DOS窗口编码格式改为UTF-8字符集
+			 * 但本人测试过还是会有一两个汉字变成乱码。
+			 * 但是还是那句话，希望你在跑这个程序时永远不会看到下面这句话。那自然也没必要进行以上的操作了。
+			 */
+			throw new FileNotFoundException("我假定你没有修改程序中FileInputStream的路径，且是在DOS命令行中运行此程序，那么请确保Key.java文件和locked.txt在同一目录下。"
+				+"比如说都在桌面。而如果你是在用IDE运行此程序，那么我建议你将FileInputStream和FileOutputStream的路径改为在同一目录下的绝对路径，以防你找不到解密文件的位置");
 		}finally {
 			//关闭资源
 			try {
@@ -189,15 +213,15 @@ public class Key {
 	}
 	
 	/**
-	 * method to verify your input,you just need to input one set of the data in the InnerClass：Repository
+	 * method to verify your input,you just need to input one set of the data in the InnerClass：Repository.
 	 * And you can input "exit" to exit program.
 	 * 
-	 * 此方法用于验证你的输入，你只需要输入下方内部类Repository中三条数据的任意一条即可，输入"exit"可退出程序
+	 * 此方法用于验证你的输入，你只需要输入下方内部类Repository中三条数据的任意一条即可通过，输入"exit"可退出程序
 	 *  
 	 * @return VERIFY_PASS when your input is correct.
 	 * 	Return INPUT_EXIT when you input "exit".
 	 * 	Return VERIFY_WRONG when you input 10 times wrong data.
-	 *  	Return VERIFY_ERROR when the method has bug.
+	 *  	
 	 */
 	private StatusCode verify() {
 		
@@ -242,9 +266,6 @@ public class Key {
 			}
 			//出现十次错误后返回错误状态码
 			return StatusCode.VERIFY_WRONG;
-		}catch(Exception e) {
-			e.printStackTrace();
-			return StatusCode.VERIFY_ERROR;//基本不会进入这里
 		}finally {
 			//释放资源
 			if(scanner != null)
@@ -261,7 +282,7 @@ public class Key {
 	 * 
 	 * 此内部类声明当你进行“验证”时的状态码
 	 */
-	static enum StatusCode{
+	private enum StatusCode{
 		
 		INPUT_EXIT("100","退出程序"),//输入exit后返回的状态码
 		
@@ -302,17 +323,51 @@ public class Key {
 	 * @author Joker Lei
 	 * 
 	 * An InnerClass to act like a repository,it has only one hashmap and three sets of data
-	 * The key is used as "account" and the value is used as "password"
+	 * The key is used as "username" and the value is used as "password"
 	 * 
 	 * 此内部类模拟一个简易数据库，里面只有一张哈希表以及三条数据，键值对中的键用作“用户名”,值用作“密码”
+	 * 使用static确保所有Key对象共享同一份“数据库”
 	 */
-	static class Repository{
-		
+	private static class Repository{
+
+		//使用static使“数据库”内的成员变量在类加载完成时一并生成，无需创建Repository对象即可使用。
 		static Map<String,String> data;
 
-		//由于此程序是开源的，你可以往哈希表里添加任何数据作为你的“账号”和“密码”
+		/*
+		 *静态代码块在类加载完成时一并写入“数据”，无需等待Repository对象的创建。
+		 *由于此程序是开源的，你可以往哈希表里添加任何数据作为你的“账号”和“密码”
+		 */
 		static{
 			data = new HashMap<String,String>();
+
+			/*
+			 * 以下操作相当于mysql中的:
+			 * INSERT INTO t_account(username,password) VALUES('username','password');
+			 *
+			 * 相当于jdbc中的:
+			 * String sql = "insert into t_account(username,password) values(?,?)";
+			 * PreparedStatement ps = connection.prepareStatement(sql);
+			 * ps.setString(1,"username");
+			 * ps.setString(2,"password");
+			 * int rows = ps.executeUpdate();
+			 *
+			 * 相当于mybatis中的xml文件:
+			 * <mapper namespace="com.joker.dao.AccountDao">
+			 *   <insert id="insertAccount">
+			 *        insert into t_account(username,password) values (#{username},#{password})
+			 *   </insert>
+			 * </mapper>
+			 * 方法中的：
+			 * String config = "mybatis.xml";
+			 * InputStream is = Recources.getResourceAsStream(config);
+			 * SqlSessionFactory factory = new SqlSessionFactoryBuilder.build(is);
+			 * SqlSession session = factory.openSession();
+			 * String sqlId= "com.joker.dao.AccountDao.insertAccount";
+			 * Account account = new Account("username","password");
+			 * int rows = session.insert(sqlId,account);
+			 * 
+			 * 但由于没有与数据库进行交互，此处使用哈希表数据结构代替数据库
+			 */
 			data.put("panasonic", "panasonic");
 			data.put("lihaoxian", "lihaoxian");
 			data.put("joker", "joker");
